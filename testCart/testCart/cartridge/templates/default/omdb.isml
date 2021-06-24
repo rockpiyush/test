@@ -1,0 +1,153 @@
+<html>
+<head>
+
+<title>Omdb..!!!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${URLUtils.staticURL('/css/style.css')}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<script>
+
+    function fun () {
+                    
+            var search = document.getElementById("search").value;
+            const xhr = new XMLHttpRequest();
+            var str ="https://www.omdbapi.com/?i=tt3896198&apikey=9abfc6d4&s="+search;
+            let ur=new URL(str);
+
+            xhr.open("GET", ur , true);
+            //alert(ur);
+
+             var rowCount = tableid.rows.length;
+            for (var i = rowCount - 1; i > 0; i--) {
+                tableid.deleteRow(i);
+            }
+ 
+            //$('#tableid').empty();
+            //$('.row').detach();
+            //document.getElementById("tbody").innerHTML="";
+
+            xhr.send(); 
+            xhr.onload = function () {
+
+                if (this.status === 200) {
+
+                    var tabContent = [];
+                    obj = JSON.parse(this.responseText);
+                       // alert(JSON. stringify(obj));
+
+                    var heading = ["Poster", "Tilte", "Year", "Type"];
+
+                         tabContent.push(heading);
+                            $.each(obj.Search, function(index, value) {
+                                var innerRowData = [];
+                                $("tbody").append('<tr onclick="showData()" id="movieDetails"><td class="image"><img src=' + value.Poster + '</img></td><td id="Title1">' + value.Title + '</td><td id ="Year1">' + value.Year + '</td><td id="Type1">' + value.Type + '</td></tr>');
+                                $.each(value, function(ind, val) {
+                                innerRowData.push(val);
+                            });
+                    tabContent.push(innerRowData);
+                });
+                }
+                else {
+                    alert("not found !!");
+                }
+            };
+
+            xhr.onerror = function() {
+                alert(`Network Error`);
+            };
+    };
+
+
+    function showData()
+            {  
+               if(document.getElementById('Title1').innerHTML=='')
+               {
+                   document.getElementById('Title2').innerHTML = '""';
+               }
+               else
+               {
+                   document.getElementById('Title2').innerHTML = document.getElementById('Title1').innerHTML;
+               }
+
+                if(document.getElementById('Year1').innerHTML=='')
+               {
+                   document.getElementById('Year2').innerHTML = '""';
+               }
+               else
+               {
+                   document.getElementById('Year2').innerHTML = document.getElementById('Year1').innerHTML;
+               }
+                if(document.getElementById('Type1').innerHTML=='')
+               {
+                   document.getElementById('Type2').innerHTML = '""';
+               }
+               else
+               {
+                   document.getElementById('Type2').innerHTML = document.getElementById('Type1').innerHTML;
+               }
+                
+                var div = document.getElementById('showData');
+                
+                div.style.visibility = 'visible';
+
+            }
+</script>
+
+<div class="text-center colo" style="margin-bottom:0">
+  <h1>---OMDB---</h1>
+</div>
+
+<div class="content colo1 ">
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="search" name="" class="form-control" value="" >
+            <div class="input-group-append">
+                <button  onclick="fun()" type="button" id="SearchButton" class="btn waves-effect waves-light btn-custom"><i class="fa fa-search mr-1"></i> Search</button>
+            </div>
+        </div>  
+<br/>
+
+<div class="col-md-6">
+    <div class="container"><b>Movie Information</b>
+        <div class="showData" id = "showData">
+            <span class="highlightData" id="Title2"></span></br>
+                <span class="highlightData" id="Year2"></span></br>
+                <span class="highlightData" id="Type2"></span>
+        </div>
+    </div>
+</div>
+<br/>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container ">
+                    <table class="table table-bordered table-striped " id="tableid">
+                        <thead>
+                            <tr>
+                                <th scope="col">Poster</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <div id="row">
+                        <tbody >
+                        </tbody>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+</body>
+</html>

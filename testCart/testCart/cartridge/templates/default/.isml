@@ -1,0 +1,89 @@
+<html lang="en"><head>
+  <title>Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${URLUtils.staticURL('/css/OMDb.css')}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>OMDb</h1>
+  <p>Search Movies TV Shows</p>
+</div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="search-result-box card-box">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="pt-3 pb-4">
+                                <div class="input-group">
+                                    <input type="text" id="SearchTitle" name="" class="form-control" value="How">
+                                    <div class="input-group-append">
+                                        <button type="button" id="SearchButton" class="btn waves-effect waves-light btn-custom"><i class="fa fa-search mr-1"></i> Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <div class="row">
+                        <div id="ShowAllResult" class="col-md-12">
+                        <div id="resData" class="container">ResponseData</div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div id="Poster" class="container"></div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="container">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr><td id="Title" data-toggle="modal" data-target="#myModal"></td></tr>
+                                                <tr><td id="Year"></td></tr>
+                                                <tr><td id="Genre"></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+        <iscomment> model </iscomment>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="background:black ; color:red;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <table class="table" style="color: currentcolor;">
+                                <tbody>
+                                    <tr><td id="Title2"></td></tr>
+                                    <tr><td id="Year2"></td></tr>
+                                    <tr><td id="Genre2"></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iscomment> model </iscomment>
+    </div>
+    <!-- container -->
+</div>
+<script src="${URLUtils.staticURL('/js/OMDb.js')}"></script>
+
+
+</body></html>
